@@ -4,7 +4,6 @@ param (
     [string]$ami = $( Read-Host "Specify AMI to start" ),
     [switch]$verbose,
     [switch]$connect,
-    [string]$keyPath = "$env:USERPROFILE\Downloads\dev-packer-private-key.pem",
     [string]$user = "jenkins"
  )
 $WellKnownAmis = @{ cglbaselib = "ami-068dd53e06b56b941";
@@ -62,7 +61,7 @@ if($connect){
         $delayToReady = (Get-Date).Subtract($launchTime)
         Write-Host "Ready!"
         $sessionStart = Get-Date
-        ssh -i $keyPath $user@$instanceAddr
+        ssh $user@$instanceAddr
         $sessionDuration = (Get-Date).Subtract($sessionStart)
         Write-Host "SSH session to instance $instanceId at $instanceAddr terminated. It took $delayToReady to get connected. Session lasted $sessionDuration."
     }
