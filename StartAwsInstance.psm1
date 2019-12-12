@@ -8,7 +8,7 @@ param (
  )
 $WellKnownAmis = @{ cglbaselib = "ami-0ec37112e7bc1e69e";
                     core = "ami-083c46f6ef514be53";
-                    externals = "ami-0c1908a94f7a8b69a";
+                    externals = "ami-059991093cd0ce68e";
                     windows2019  = "ami-08dd25c657c5ee0f0";
                     linuxbuild = "ami-017f5ba3e41ff3de8"}
 if($WellKnownAmis.ContainsKey($ami)) {
