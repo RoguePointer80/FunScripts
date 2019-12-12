@@ -6,9 +6,11 @@ param (
     [switch]$connect,
     [string]$user = "jenkins"
  )
-$WellKnownAmis = @{ cglbaselib = "ami-068dd53e06b56b941";
-                    core = "ami-00c65c8297612fd83";
-                    windows2019  = "ami-08dd25c657c5ee0f0"}
+$WellKnownAmis = @{ cglbaselib = "ami-0ec37112e7bc1e69e";
+                    core = "ami-083c46f6ef514be53";
+                    externals = "ami-0c1908a94f7a8b69a";
+                    windows2019  = "ami-08dd25c657c5ee0f0";
+                    linuxbuild = "ami-017f5ba3e41ff3de8"}
 if($WellKnownAmis.ContainsKey($ami)) {
     $ami = $WellKnownAmis[$ami]
 }
