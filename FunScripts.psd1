@@ -63,7 +63,7 @@ PowerShellVersion = '6.0'
 # FormatsToProcess = @()
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-NestedModules = @("StartAwsInstance.psm1", "StopAwsInstance.psm1", "invokeEcrLogin.psm1", "GrantCloudOps.psm1")
+NestedModules = @("StartAwsInstance.psm1", "StopAwsInstance.psm1", "invokeEcrLogin.psm1", "GrantCloudOps.psm1", "CompressPackage.psm1")
 
 # Functions to export from this module
 FunctionsToExport = '*'
