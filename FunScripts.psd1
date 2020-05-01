@@ -69,7 +69,8 @@ NestedModules = @("StartAwsInstance.psm1",
                   "GrantCloudOps.psm1",
                   "CompressPackage.psm1",
                   "GetRougeFmHistory.psm1",
-                  "BumpVersion.psm1")
+                  "BumpVersion.psm1",
+                  "EnterVsDev.psm1")
 
 # Functions to export from this module
 FunctionsToExport = '*'
