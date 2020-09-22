@@ -4,12 +4,13 @@ param (
     [string]$ami = $( Read-Host "Specify AMI to start" ),
     [switch]$verbose,
     [switch]$connect,
-    [string]$user = "jenkins"
+    [string]$user = "jenkins",
+    [UInt32]$rootSize = 75
  )
-$WellKnownAmis = @{ cglbaselib = "ami-039c51fb172771c78";
-                    core = "ami-0e3cfec3922a14762";
-                    externals = "ami-0842251fabc297185";
-                    windows2019  = "ami-08dd25c657c5ee0f0";
+$WellKnownAmis = @{ cglbaselib = "ami-08939878db1ad8afa";
+                    core = "ami-090db65af154cafea";
+                    externals = "ami-0340b7fd0ad50ec33";
+                    windows2019  = "ami-05bb2dae0b1de90b3";
                     linuxbuild = "ami-017f5ba3e41ff3de8"}
 if($WellKnownAmis.ContainsKey($ami)) {
     $ami = $WellKnownAmis[$ami]
@@ -23,9 +24,10 @@ $proc = Start-Process -FilePath "aws" -Wait -NoNewWindow -PassThru -RedirectStan
  "--count 1 "+ `
  "--instance-type m5.2xlarge "+ `
  "--key-name dev-packer-keypair "+ `
- "--security-group-ids sg-4adfc73e "+ `
+ "--security-group-ids sg-021da01752daee03e "+ `
  "--subnet-id subnet-e64148ae "+ `
  "--iam-instance-profile Name=ndev-jenkins-agent " + `
+ # "--block-device-mappings /dev/sda1=:$rootSize" + `
  "--tag-specifications ResourceType=instance,Tags=[{Key=coveo:owner,Value=frivard@coveo.com},{Key=Name,Value=frivard-temp},{Key=coveo:schedule-default,Value=false},{Key=coveo:schedule-disabled,Value=true}]")
 
 $instanceAddr = ""
