@@ -1,3 +1,13 @@
+function Compress-InPlace
+{
+    param (
+    [string]$Path
+    )
+    Compress-Archive -Path $Path -Destination "$Path.zip"
+    Remove-Item $Path
+    Move-Item -Path "$Path.zip" -Destination $Path
+}
+
 function Compress-Package
 {
     param (
@@ -36,4 +46,14 @@ function Publish-PackageToS3
     aws s3 cp $destination $s3Destination --recursive
     Write-Host "Clean up folder $destination"
     Remove-Item -Path $destination -Recurse
+}
+
+function Get-CoveoComponents
+{
+    param(
+        [Parameter(Mandatory=$true)][string]$version
+    )
+
+    aws "s3" "cp" "s3://coveo-ndev-binaries/ivy/official/com/coveo/Core/$version/linux-x64/Release/NodeManagement/Components/CoveoComponentPackage.zip" "CoveoComponentPackage.zip"
+    & "$env:PROGRAMFILES\Git\usr\bin\unzip.exe" -o .\CoveoComponentPackage.zip
 }
